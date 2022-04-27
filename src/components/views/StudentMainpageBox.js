@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from "react";
 import Typography from '../assets/Typography';
 import MainpageBoxLayout from './MainpageBoxLayout';
 import Box from '@mui/material/Box';
@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Button from '@mui/material/Button';
-
+import Axios from "axios";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import { Home } from '@mui/icons-material';
 import Homepage from '../Homepage';
@@ -23,6 +23,20 @@ export default function MainpageBox() {
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+  
+  // call the list of university 
+  const [univ_list, setUser] = useState("");
+  useEffect(() => {
+    Axios.post("/home/univ").then((response) => {
+      if (response.data) {
+        console.log(response.data);
+        setUser(response.data);   
+      } else {
+        alert("failed to ");
+      }
+    });
+  }, []);
+  
 
   return (
     <MainpageBoxLayout
@@ -62,10 +76,11 @@ export default function MainpageBox() {
             label="Univ"
             onChange={handleChange}
           >
-            {/* DB 연동 필요 */}
-            <MenuItem value={10}>카카오 대학교</MenuItem>
-            <MenuItem value={20}>네이버 대학교</MenuItem>
-            <MenuItem value={30}>배민 대학교</MenuItem>
+            
+              {Object.values(univ_list).map(name => (
+                <MenuItem value={name.univname}>{name.univname}</MenuItem>
+              ))}
+
           </Select>
         </FormControl>
       </Box>
@@ -75,7 +90,7 @@ export default function MainpageBox() {
         }}>
         <Link to = "/SignIn">
           <Button
-            // onClick={()=>window.location.href="./SignIn"}
+            onClick={()=>sessionStorage.setItem('univ', univ)}
             variant="contained"
             disabled={!univ}
             >
