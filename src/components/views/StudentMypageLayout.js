@@ -35,7 +35,7 @@ export default function StuEnrolmentpageBox() {
     const [resData, setResData] = React.useState([]);
     const InitPostMethod = async() => {
         await axios({
-            baseURL: 'api/student/Mypage',
+            url: 'api/student/Mypage',
             method: 'POST',
             withCredentials: true.valueOf,
             data: {
