@@ -196,7 +196,7 @@ function AxiosPeriodCancle(e){
   const handlePost = async(joinData) =>{
     await axios({
       baseURL: 'api/manager/FormPeriod/cancle',
-      method: "post",
+      method: "POST",
       withCredentials: true,
       data: joinData
     })
