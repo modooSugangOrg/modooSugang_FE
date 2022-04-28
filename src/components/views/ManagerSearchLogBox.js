@@ -52,9 +52,8 @@ export default function ManagerSearchLogBox() {
     const [resData, setResData] = React.useState([]);
     const handleGetMethod = async(id) => {
         await axios({
-            url: 'api/manage/search',
+            baseURL: 'api/manage/search',
             method: 'POST',
-            baseURL: process.env.REACT_APP_TEST_URL,
             withCredentials: true.valueOf,
             data: {
                 univ: univName,

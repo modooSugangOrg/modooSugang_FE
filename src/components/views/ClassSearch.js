@@ -72,7 +72,6 @@ export default function Class() {
         await axios({
             baseURL: '/api/student/class/'+sessionStorage.getItem('univ'),
             method: 'GET',
-            // baseURL: 'http://localhost:8080',
             withCredentials: true.valueOf,
         },
         )

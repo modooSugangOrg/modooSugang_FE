@@ -37,9 +37,8 @@ function SignIn() {
   const handlePost = async(joinData) =>{
     const dir = joinData.isManager;
     await axios({
-      url: '/api/login',
+      baseURL: '/api/login',
       method: "POST",
-      baseURL: process.env.REACT_APP_TEST_URL,
       withCredentials: true,
       data: joinData
     })
