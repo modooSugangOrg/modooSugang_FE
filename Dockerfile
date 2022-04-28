@@ -1,23 +1,19 @@
-FROM nginx:latest
+FROM node:16.14.2-alpine
 
 # app 폴더 생성 및 work dir 고정
-RUN mkdir /app
 WORKDIR /app
 
-# work dir에 build 폴더 생성 /app/build
-RUN mkdir ./build
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-# host pc의 현재경로의 build 폴더를 workdir 의 build 폴더로 복사
-ADD ./build ./build
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
-# nginx 의 default.conf 를 삭제
-RUN rm /etc/nginx/conf.d/default.conf
+# add app
+COPY . ./
 
-# host pc 의 nginx.conf 를 아래 경로에 복사
-COPY ./nginx.conf /etc/nginx/conf.d
-
-# 80 포트 오픈
-EXPOSE 80
-
-# container 실행 시 자동으로 실행할 command. nginx 시작
-CMD ["nginx", "-g", "daemon off;"]
+# start app
+CMD ["npm", "start"]
