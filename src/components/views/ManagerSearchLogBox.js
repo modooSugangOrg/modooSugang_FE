@@ -48,11 +48,11 @@ export default function ManagerSearchLogBox() {
         []
     );
 
-    // 서버에 api 요청 (GET)
+    // 서버에 api 요청 
     const [resData, setResData] = React.useState([]);
     const handleGetMethod = async(id) => {
         await axios({
-            baseURL: 'api/manage/search',
+            baseURL: '/api/manage/search',
             method: 'POST',
             withCredentials: true.valueOf,
             data: {
@@ -61,7 +61,6 @@ export default function ManagerSearchLogBox() {
             }
         })
         .then(function callback(response){
-            // console.log(typeof(response.data[0]['cancel']));
             setResData(response.data);
         })
         .catch(function CallbackERROR(response){
