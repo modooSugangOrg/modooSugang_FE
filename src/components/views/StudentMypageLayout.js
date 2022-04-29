@@ -31,17 +31,14 @@ export default function StuEnrolmentpageBox() {
         setExperiment(ex);
     }
 
-    // 서버에 api 요청 (POST)
+    // 서버에 api 요청
     const [resData, setResData] = React.useState([]);
     const InitPostMethod = async() => {
         await axios({
-            url: 'api/student/Mypage',
-            method: 'POST',
+            url: 'api/student/Mypage/'+sessionStorage.getItem('univ')+'/'+sessionStorage.getItem('id'),
+            method: 'GET',
             withCredentials: true.valueOf,
-            data: {
-                univ: sessionStorage.getItem('univ'),
-                id: sessionStorage.getItem('id'),
-            }
+            
         },
         )
         .then(function callback(response){
