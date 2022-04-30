@@ -86,7 +86,7 @@ function AxiosPeriodBasket(e){
 
   const handlePost = async(joinData) =>{
     await axios({
-      baseURL: '/api/manager/FormPeriod/basket',
+      baseURL: 'http://localhost:8080/api/manager/FormPeriod/basket',
       method: "POST",
       withCredentials: true,
       data: joinData
@@ -110,6 +110,8 @@ function AxiosPeriodBasket(e){
     start: start,
     end : end,
     semester : semester,
+    univ : sessionStorage.getItem("univ"),
+    id: sessionStorage.getItem("id"),
   };
   if(true){
     handlePost(joinData);
@@ -121,7 +123,7 @@ function AxiosPeriodRegister(e){
   
   const handlePost = async(joinData) =>{
     await axios({
-      baseURL: '/api/manager/FormPeriod/register',
+      baseURL: 'http://localhost:8080/api/manager/FormPeriod/register',
       method: "POST",
       withCredentials: true,
       data: joinData
@@ -145,6 +147,8 @@ function AxiosPeriodRegister(e){
     start: start,
     end : end,
     semester : semester,
+    univ : sessionStorage.getItem("univ"),
+    id: sessionStorage.getItem("id"),
   };
   if(true){
     handlePost(joinData);
@@ -158,7 +162,7 @@ function AxiosPeriodModify(e){
   
   const handlePost = async(joinData) =>{
     await axios({
-      baseURL: '/api/manager/FormPeriod/modify',
+      baseURL: 'http://localhost:8080/api/manager/FormPeriod/modify',
       method: "POST",
       withCredentials: true,
       data: joinData
@@ -182,6 +186,8 @@ function AxiosPeriodModify(e){
     start: start,
     end : end,
     semester : semester,
+    univ : sessionStorage.getItem("univ"),
+    id: sessionStorage.getItem("id"),
   };
   if(true){
     handlePost(joinData);
@@ -195,7 +201,7 @@ function AxiosPeriodCancle(e){
   
   const handlePost = async(joinData) =>{
     await axios({
-      baseURL: 'api/manager/FormPeriod/cancle',
+      baseURL: 'http://localhost:8080/api/manager/FormPeriod/cancel',
       method: "POST",
       withCredentials: true,
       data: joinData
@@ -219,6 +225,8 @@ function AxiosPeriodCancle(e){
     start: start,
     end : end,
     semester : semester,
+    univ : sessionStorage.getItem("univ"),
+    id: sessionStorage.getItem("id"),
   };
   if(true){
     handlePost(joinData);

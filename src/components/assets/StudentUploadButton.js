@@ -18,7 +18,8 @@ const style = {
   p: 4,
 };
 
-export default function FileUploadButton() {
+export default function StudentUploadButton() {
+  
   const [file, setFile] = React.useState();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -30,8 +31,8 @@ export default function FileUploadButton() {
     formData.append('file', file)
     await axios({
       method: "POST",
-      baseURL: 'http://localhost:8080/api/manage/upload/timetable',
-      // baseURL: '/api/manage/upload/timetable',
+      baseURL: 'http://localhost:8080/api/manage/upload/studentInfo',
+      // baseURL: '/api/manage/upload/studentInfo',
       withCredentials: true,
       data: formData
     }).then(function callback(response){
@@ -42,7 +43,7 @@ export default function FileUploadButton() {
       alert("ERROR!");
     });
   }
-  
+
   const Input = styled('input')({
     display: 'none',
   });
